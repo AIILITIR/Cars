@@ -73,18 +73,19 @@ table {
 	height: 100px;
 	background: transparent url('player.png') center / cover no-repeat;
 	position: absolute;
-	left: 125px;
-	bottom: 10px;
+
 }
 .enemy{
 	background: transparent url('enemy2.png') center / cover no-repeat;
 }
 .gameArea{
-	height: 1000px;
+	height: 100%;
 	width: 300px;
 	overflow: hidden;
-	position: relative;
-	margin: 0 auto;
+	position: absolute;
+top:50%;
+left:50%;
+transform:translate(-50%, -50%);
 	background: #222;
 }
 

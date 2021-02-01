@@ -29,6 +29,10 @@ return document.documentElement.clientHeight / heightElement + 1;
 
 function startGame(){
 	start.classList.add('hide');
+	gameArea.innerHTML='';
+	car.style.left= '125px';
+	car.style.top='auto';
+	car.style.bottom='10px';
 	for (let i = 0; i <getQuantityElements(100); i++) {
 		const line = document.createElement('div');
 		line.classList.add('line');
