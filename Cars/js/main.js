@@ -29,6 +29,8 @@ return document.documentElement.clientHeight / heightElement + 1;
 
 function startGame(){
 	start.classList.add('hide');
+	document.getElementById('audio').currentTime = 0;
+	document.getElementById('audio').play();
 	gameArea.innerHTML='';
 	car.style.left= '125px';
 	car.style.top='auto';
@@ -103,6 +105,7 @@ function moveEnemy(argument) {
 			carRect.left <= enemyRect.right&&
 			carRect.bottom >= enemyRect.top){
 			setting.start =false;
+			document.getElementById('audio').pause();
 			start.classList.remove('hide');
 			
 		}
