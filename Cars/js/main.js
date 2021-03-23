@@ -1,4 +1,5 @@
 const score = document.querySelector('.score'),
+timer = document.querySelector('.timer'),
 	start = document.querySelector('.start'),
 	gameArea = document.querySelector('.gameArea'),
 	car = document.createElement('div');
@@ -19,6 +20,7 @@ const keys= {
 const setting={
 	start : false,
 	score : 0,
+	timer: 0,
 	speed : 3,
 	traffic: 3
 };
@@ -28,6 +30,10 @@ return document.documentElement.clientHeight / heightElement + 1;
 }
 
 function startGame(){
+	min = 0;
+hour = 0;
+	init();
+		tick();
 	start.classList.add('hide');
 	document.getElementById('audio').currentTime = 0;
 	document.getElementById('audio').play();
@@ -64,6 +70,7 @@ function playGame() {
 	if (setting.start) {
 		setting.score+= setting.speed;
 		score.innerHTML = 'SCORE<br> '+ setting.score;
+
 		moveRoad();
 		moveEnemy();
 		if (keys.ArrowLeft && setting.x >0){
@@ -107,6 +114,7 @@ function moveEnemy(argument) {
 			setting.start =false;
 			document.getElementById('audio').pause();
 			start.classList.remove('hide');
+		
 			
 		}
 		item.y+= setting.speed;
@@ -128,3 +136,57 @@ function  moveRoad() {
 			line.y =-100;
 	})
 }
+min = 0;
+hour = 0;
+//Оставляем вашу функцию
+function init() {
+	sec = 0;
+    hour = 0;
+    min = 0;
+    
+    
+    setInterval(tick, 1000);
+}
+
+//Основная функция tick()
+function tick() {
+    sec++;
+    if (setting.start==false){ return;} else{
+    if (sec >= 60) { //задаем числовые параметры, меняющиеся по ходу работы программы
+        min++;
+        sec = sec - 60;
+    }
+    if (min >= 60) {
+        hour++;
+        min = min - 60;
+    }
+    if (sec < 10) { //Визуальное оформление
+        if (min < 10) {
+            if (hour < 10) {
+                document.getElementById('timer').innerHTML ='0' + hour + ':0' + min + ':0' + sec;
+            } else {
+                document.getElementById('timer').innerHTML = hour + ':0' + min + ':0' + sec;
+            }
+        } else {
+            if (hour < 10) {
+                document.getElementById('timer').innerHTML = '0' + hour + ':' + min + ':0' + sec;
+            } else {
+                document.getElementById('timer').innerHTML = hour + ':' + min + ':0' + sec;
+            }
+        }
+    } else {
+        if (min < 10) {
+            if (hour < 10) {
+                document.getElementById('timer').innerHTML = '0' + hour + ':0' + min + ':' + sec;
+            } else {
+                document.getElementById('timer').innerHTML = hour + ':0' + min + ':' + sec;
+            }
+        } else {
+            if (hour < 10) {
+                document.getElementById('timer').innerHTML = '0' + hour + ':' + min + ':' + sec;
+            } else {
+                document.getElementById('timer').innerHTML = hour + ':' + min + ':' + sec;
+            }
+        }
+    }
+}}
